@@ -24,8 +24,6 @@
 
             @include('template.navbar')
             
-            @include('template.sidebar')
-            
             <!-- Main Content -->
             <div class="main-content">
               <section class="section">
@@ -39,6 +37,8 @@
                   </div> --}}
               </section>
             </div>
+            @include('template.sidebar')
+            
 
             @include('template.footer')
     </div>

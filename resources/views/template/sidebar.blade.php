@@ -22,7 +22,7 @@
             <li class="menu-header">Master</li>
             
             <li class="{{ request()->is('barang') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('barang.index') }}">
                     <i class="fas fa-boxes"></i>
                     <span>Barang</span>
                 </a>
