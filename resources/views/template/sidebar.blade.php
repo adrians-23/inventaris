@@ -29,7 +29,7 @@
             </li>
 
             <li class="{{ request()->is('tempat') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('tempat.index') }}">
                     <i class="fas fa-map-marker"></i>
                     <span>Tempat</span>
                 </a>

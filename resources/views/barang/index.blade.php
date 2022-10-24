@@ -53,7 +53,7 @@
                         <div class="card-body">
                             
                             {{-- Add Nama --}}
-                            <label class="mt-2" for="nama">Nama Barang</label>
+                            <label class="" for="nama">Nama Barang</label>
                             <input type="text" name="nama" id="nama" value="{{ old('nama')}}" class="form-control @error('nama') is-invalid @enderror">
                             @error('nama')
                                 <div class="text-danger">
