@@ -26,13 +26,14 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <td style="width: 5%">No</td>
+                                        <td style="width: 5%;">No</td>
                                         <td>Kode</td>
                                         <td>Nama</td>
                                         <td>Kategori</td>
                                         <td>Tempat</td>
                                         <td>Stok</td>
-                                        <td style="width: 15%">Aksi</td>
+                                        <td>keterangan</td>
+                                        <td style="width: 15%;">Aksi</td>
                                     </tr>
                                 </thead>
                             </table>
@@ -95,6 +96,16 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+
+                            {{-- Add Keterangan --}}
+                            <label class="mt-2" for="nama">Keterangan</label>
+                            <textarea type="text" name="keterangan" id="keterangan" value="{{ old('keterangan')}}" class="form-control @error('keterangan') is-invalid @enderror">
+                            @error('keterangan')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </textarea>
                             
                             {{-- Tombol simpan dan batal --}}
                             <div class="footer mt-2">
