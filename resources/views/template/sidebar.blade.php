@@ -35,6 +35,13 @@
                 </a>
             </li>
 
+            <li class="{{ request()->is('kategori') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+
             <li class="menu-header">Setting</li>
 
             <li class="{{ request()->is('user') ? 'active' : '' }}">
