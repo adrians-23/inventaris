@@ -25,6 +25,9 @@ class BarangController extends Controller
 
     public function data()
     {
+        $date->format('d');
+        $year->format('Y');
+        
         $barang = barang::orderBy('id', 'desc')->get();
 
         return datatables()
@@ -42,6 +45,7 @@ class BarangController extends Controller
                 <div class="btn-group">
                     <button onclick="editData(`' .route('barang.update', $barang->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
                     <button onclick="deleteData(`' .route('barang.destroy', $barang->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button onclick="deleteData(`' .route('barang.destroy', $barang->id). '`)" class="btn btn-success btn-sm"><i class="fa fa-print"></i></button>
                 </div>
 
                 ';
@@ -103,9 +107,10 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function show(Barang $barang)
+    public function show($id)
     {
-        //
+        $barang = Barang::find($id);
+        return response()->json($barang);
     }
 
     /**
@@ -114,9 +119,10 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    public function edit($id)
     {
-        //
+        $barang = Barang::find($id);
+        return view('barang.form', compact('barang'));
     }
 
     /**
@@ -126,9 +132,13 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Barang $barang)
+    public function update(Request $request, $id)
     {
-        //
+        $barang = Barang::find($id);
+        $barang->nama = $request->nama;
+        $barang->update();
+
+        return response()->json('Data Berhasil Disimpan');
     }
 
     /**
@@ -137,8 +147,11 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        //
+        $barang = Barang::find($id);
+        $barang->delete();
+
+        return redirect('barang');
     }
 }

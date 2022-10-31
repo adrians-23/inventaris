@@ -83,9 +83,10 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function show(Kategori $kategori)
+    public function show($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        return response()->json($kategori);
     }
 
     /**
@@ -94,9 +95,10 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kategori $kategori)
+    public function edit($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        return view('kategori.form', compact('kategori'));
     }
 
     /**
@@ -106,9 +108,13 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, $id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->nama = $request->nama;
+        $kategori->update();
+
+        return response()->json('Data Berhasil Disimpan');
     }
 
     /**
@@ -117,8 +123,11 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori $kategori)
+    public function destroy($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+
+        return redirect('kategori');
     }
 }
