@@ -8,14 +8,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="" id="inputForm" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
 
                         {{-- Add Kode --}}
                         <label class="" for="nama">Kode Barang</label>
-                        <input type="text" name="kode" class="form-control" value="{{ $kode }}" aria-label="Disabled input example" readonly>
+                        <input type="text" name="kode" id="kode" class="form-control" value="{{ $kode }}" aria-label="Disabled input example" readonly>
 
                         {{-- Add Nama --}}
                         <label class="" for="nama">Nama Barang</label>
