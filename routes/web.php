@@ -26,6 +26,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Route Barang
 Route::get('/barang/data', [BarangController::class, 'data'])->name('barang.data');
 Route::resource('/barang', BarangController::class);
+Route::get('/barang/pdf/{id}', [BarangController::class, 'pdf'])->name('barang.pdf');
+Route::post('/barang/cetak-barcode', [BarangController::class, 'cetakBarcode'])->name('barang.barcode');
 
 // Route Tempat
 Route::get('/tempat/data', [TempatController::class, 'data'])->name('tempat.data');

@@ -218,71 +218,75 @@
         }
     })
     
-        function addForm(url){
-            $('#modalForm').modal('show');
-            $('#modalForm .modal-title').text('Tambah Data Barang');
-            $('#modalForm form')[0].reset();
+    function addForm(url){
+        $('#modalForm').modal('show');
+        $('#modalForm .modal-title').text('Tambah Data Barang');
+        $('#modalForm form')[0].reset();
 
-            $('#modalForm form').attr('action', url);
-            $('#modalForm [name=_method]').val('post');
-        }
+        $('#modalForm form').attr('action', url);
+        $('#modalForm [name=_method]').val('post');
+    }
 
-        function editData(url){
-            $('#modalForm').modal('show');
-            $('#modalForm .modal-title').text('Edit Data Barang');
+    function pdf(url){
+        $('.form-barang').attr('action', url).attr('target', '_blank').submit();
+    }
 
-            $('#modalForm form')[0].reset();
-            $('#modalForm form').attr('action', url);
-            $('#modalForm [name=_method]').val('put');
+    function editData(url){
+        $('#modalForm').modal('show');
+        $('#modalForm .modal-title').text('Edit Data Barang');
 
-            $.get (url)
-                .done((response) => {
-                    $('#modalForm [name=kode]').val(response.kode);
-                    $('#modalForm [name=nama]').val(response.nama);
-                    $('#modalForm [name=kategori_id]').val(response.kategori_id);
-                    $('#modalForm [name=tempat_id]').val(response.tempat_id);
-                    $('#modalForm [name=stok]').val(response.stok);
-                    $('#modalForm [name=keterangan]').val(response.keterangan);
-                    // console.log(response.nama);
-                })
-                .fail((errors) => {
-                    alert('Tidak Dapat Menampilkan Data');
-                    return;
-                })
-        }
+        $('#modalForm form')[0].reset();
+        $('#modalForm form').attr('action', url);
+        $('#modalForm [name=_method]').val('put');
 
-        function deleteData(url){
-            swal({
-                title: "Apa anda yakin menghapus data ini?",
-                text: "Jika anda klik OK, maka data akan terhapus",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    $.post(url, {
-                    '_token' : $('[name=csrf-token]').attr('content'),
-                    '_method' : 'delete'
-                })
-                .done((response) => {
-                    swal({
-                    title: "Sukses",
-                    text: "Data berhasil dihapus!",
-                    icon: "success",
-                    });
-                })
-                .fail((errors) => {
-                    swal({
-                    title: "Gagal",
-                    text: "Data gagal dihapus!",
-                    icon: "error",
-                    });
-                })
-                table.ajax.reload();
-                }
-            });
+        $.get (url)
+            .done((response) => {
+                $('#modalForm [name=kode]').val(response.kode);
+                $('#modalForm [name=nama]').val(response.nama);
+                $('#modalForm [name=kategori_id]').val(response.kategori_id);
+                $('#modalForm [name=tempat_id]').val(response.tempat_id);
+                $('#modalForm [name=stok]').val(response.stok);
+                $('#modalForm [name=keterangan]').val(response.keterangan);
+                // console.log(response.nama);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data');
+                return;
+            })
+    }
 
-        }
-    </script>
+    function deleteData(url){
+        swal({
+            title: "Apa anda yakin menghapus data ini?",
+            text: "Jika anda klik OK, maka data akan terhapus",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                $.post(url, {
+                '_token' : $('[name=csrf-token]').attr('content'),
+                '_method' : 'delete'
+            })
+            .done((response) => {
+                swal({
+                title: "Sukses",
+                text: "Data berhasil dihapus!",
+                icon: "success",
+                });
+            })
+            .fail((errors) => {
+                swal({
+                title: "Gagal",
+                text: "Data gagal dihapus!",
+                icon: "error",
+                });
+            })
+            table.ajax.reload();
+            }
+        });
+
+    }
+</script>
 @endpush
